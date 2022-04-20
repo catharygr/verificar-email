@@ -3,8 +3,7 @@ const txtArea = document.querySelector("#txt-area")
 const btnVerificar = document.querySelector("#btn-verificar")
 let spamMensaje = ''
 let entregarMensaje = ''
-
-btnVerificar.addEventListener("click",verificar)
+btnVerificar.addEventListener("click", verificar)
 
 function verificar() {
     fetch(`https://api.eva.pingutil.com/email?email=${txtArea.value}`)
@@ -22,10 +21,11 @@ function verificar() {
         } else {
             entregarMensaje = "NO SE PUEDE ENTREGAR"
         }
+
+        
         mensaje.innerHTML = `
         El correo electrónico ${data.data.email_address} proviene de ${data.data.domain},</br> ${entregarMensaje} y ${spamMensaje} un spam
         `
     })
-    .catch(error => console.log('error', error)) 
-    console.log(txtArea.value)
+    // .catch(error => console.log('error', error)) 
 }
