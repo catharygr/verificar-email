@@ -9,22 +9,12 @@ function verificar() {
     fetch(`https://api.eva.pingutil.com/email?email=${txtArea.value}`)
     .then(response => response.json())
     .then(data => {
-        if(data.data.spam) {
-            spamMensaje = 'ES'
-        } else {
-            spamMensaje = 'NO ES'
-        }
 
+        data.data.spam ? spamMensaje = 'ES' : spamMensaje = 'NO ES'
+        data.data.deliverable ? entregarMensaje = "SE PUEDE ENTREGAR" : entregarMensaje = "NO SE PUEDE ENTREGAR"
 
-        if (data.data.deliverable){
-            entregarMensaje = "SE PUEDE ENTREGAR"
-        } else {
-            entregarMensaje = "NO SE PUEDE ENTREGAR"
-        }
-
-        
         mensaje.innerHTML = `
-        El correo electrónico ${data.data.email_address} proviene de ${data.data.domain},</br> ${entregarMensaje} y ${spamMensaje} un spam
+        El correo electrónico <strong>${data.data.email_address}</strong> proviene de <strong>${data.data.domain}</strong>,</br> <strong>${entregarMensaje}</strong> y <strong>${spamMensaje}</strong> un spam
         `
     })
     // .catch(error => console.log('error', error)) 
