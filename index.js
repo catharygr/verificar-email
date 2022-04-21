@@ -21,7 +21,7 @@ async function verificar() {
         mensaje.innerHTML = `
         El correo electrónico <strong>${data.data.email_address}</strong> proviene de <strong>${data.data.domain}</strong>,</br> <strong>${entregarMensaje}</strong> y <strong>${spamMensaje}</strong> un spam
         `
-
+        txtArea.value = ''
     } catch (fallo) {
         console.error(fallo)
     }
